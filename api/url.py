@@ -1,0 +1,5 @@
+student_json_cn = 'https://lonqie.github.io/SchaleDB/data/cn/students.json'
+student_json_en = 'https://lonqie.github.io/SchaleDB/data/en/students.json'
+student_json_jp = 'https://lonqie.github.io/SchaleDB/data/jp/students.json'
+student_json_kr = 'https://lonqie.github.io/SchaleDB/data/kr/students.json'
+student_json_tw = 'https://lonqie.github.io/SchaleDB/data/tw/students.json'
