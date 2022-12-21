@@ -52,3 +52,27 @@ class RawStudent(BaseModel):
     type: str = 'Striker'
     armorType: str = 'LightArmor'
     weapon: str = 'AR'
+    CollectionTexture: str = ''
+
+    @validator("type")
+    def validate_type(cls, validateValue):
+        if validateValue not in ['Striker', 'Special']:
+            raise ValueError(f"{validateValue} not in {['Striker', 'Special']}")
+        return validateValue
+
+    @validator("armorType")
+    def validate_armor_type(cls, validateValue):
+        if validateValue not in ['LightArmor', 'HeavyArmor', 'Unarmed']:
+            raise ValueError(f"{validateValue} not in {['LightArmor', 'HeavyArmor', 'Unarmed']}")
+        return validateValue
+
+    @validator("weapon")
+    def validate_weapon(cls, validateValue):
+        if validateValue not in ['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT']:
+            raise ValueError(f"{validateValue} not in {['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT']}")
+        return validateValue
+
+
+class Avatar(BaseModel):
+    id: int = 0
+    avatarName: str = ''

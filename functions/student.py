@@ -8,7 +8,8 @@ from api.settings.club_names import club_names
 from api.settings.school_names import school_names
 from api.settings.student_names import student_names
 from api.url import student_json_cn, student_json_en, student_json_jp, student_json_kr, student_json_tw
-from models.Student import RawStudent, Student, StudentName
+from functions.get_avatar_image import get_avatar_image
+from models.Student import RawStudent, Student, StudentName, Avatar
 
 http = urllib3.PoolManager()
 
@@ -28,10 +29,10 @@ def get_student(target_file_path: pathlib.Path):
     def get_student_json(url: str, language: str = 'cn', isTest: bool = False):
         if isTest:
             with open(f"test/data_{language}.json", "r", encoding="utf-8") as f:
-                return json.load(f)
-
-        response = http.request('GET', url)
-        response_raw = json.loads(response.data.decode('utf-8'))
+                response_raw = json.load(f)
+        else:
+            response = http.request('GET', url)
+            response_raw = json.loads(response.data.decode('utf-8'))
         data = []
         for student_raw in response_raw:
             student = RawStudent(
@@ -45,6 +46,7 @@ def get_student(target_file_path: pathlib.Path):
                 type=transform_student_type(student_raw['SquadType']),
                 armorType=student_raw['ArmorType'],
                 weapon=student_raw['WeaponType'],
+                CollectionTexture=student_raw['CollectionTexture'],
             )
             data.append({
                 "id": student.id,
@@ -57,6 +59,7 @@ def get_student(target_file_path: pathlib.Path):
                 "type": student.type,
                 "armorType": student.armorType,
                 "weapon": student.weapon,
+                "CollectionTexture": student.CollectionTexture,
             })
         return data
 
@@ -100,12 +103,22 @@ def get_student(target_file_path: pathlib.Path):
 
     data_latest = []
 
+    avatar_latest = []
+
     # 假定日服数据总是最新
     for student_jp in data_jp_sorted:
         student_id = student_jp['id']
         student_family_name_jp = student_jp['familyName'] or ''
         student_name_jp = student_jp['name'] or ''
+        student_avatar = student_jp['CollectionTexture']
         student_object_old = next((x for x in data_outdated if x['id'] == student_id), {})
+
+        avatar_jp = Avatar(
+            id=student_id,
+            avatarName=student_avatar,
+        )
+        avatar_latest.append(avatar_jp)
+
         student_latest = Student(
             id=student_jp['id'],
             familyName=StudentName(
@@ -162,3 +175,7 @@ def get_student(target_file_path: pathlib.Path):
 
     with open(target_file_path, "w", encoding="utf-8") as f:
         yaml.dump(data_latest, f, allow_unicode=True, sort_keys=False, Dumper=yaml.CDumper)
+
+    image_output_path = target_file_path.parent / 'image' / 'avatar_students'
+
+    get_avatar_image(avatar_latest, image_output_path)
