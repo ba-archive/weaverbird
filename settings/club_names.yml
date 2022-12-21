@@ -1,5 +1,3 @@
-- jp: クロノス報道部
-  cn: 克罗诺斯报导部
 - jp: 美食研究会
   code: GourmetClub
   cn: 美食研究会
@@ -72,8 +70,6 @@
 - jp: トレーニング部
   code: TrainingClub
   cn: 训练部
-- jp: ヘルメット団
-  cn: 钢盔团
 - jp: 無し
   code: EmptyClub
   cn: 无社团

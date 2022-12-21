@@ -1,8 +1,6 @@
 - jp: 百鬼夜行
   code: Hyakkiyako
   cn: 百鬼夜行
-- jp: 百鬼夜行连合学院
-  cn: 百鬼夜行联合学院
 - jp: レッドウィンター
   code: RedWinter
   cn: 红冬
@@ -15,8 +13,6 @@
 - jp: ミレニアム
   code: Millennium
   cn: 千年
-- jp: ミレニアムサイエンススクール
-  cn: 千年科技学院
 - jp: アリウス
   code: Arius
   cn: 阿里乌斯
@@ -26,16 +22,11 @@
 - jp: ヴァルキューレ
   code: Valkyrie
   cn: 瓦尔基里
-- jp: ヴァルキューレ警察学校
-  cn: 瓦尔基里警察学校
-- jp: SRT特殊学園
-  cn: SRT特殊学园
 - jp: SRT
   code: SRT
   cn: SRT
-- jp: クロノススクール
-  cn: 克罗诺斯学校
 - jp: トリニティ
+  code: Trinity
   cn: 圣三一
 - jp: その他
   code: ETC
