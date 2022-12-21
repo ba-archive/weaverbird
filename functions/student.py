@@ -7,7 +7,7 @@ import yaml
 from api.settings.club_names import club_names
 from api.settings.school_names import school_names
 from api.settings.student_names import student_names
-from api.url import student_json_cn, student_json_en, student_json_jp, student_json_kr, student_json_tw
+from api.url import student_json_cn, student_json_en, student_json_jp, student_json_kr, student_json_tw, student_json_th
 from functions.get_avatar_image import get_avatar_image
 from models.Student import RawStudent, Student, StudentName, Avatar
 
@@ -98,6 +98,7 @@ def get_student(target_file_path: pathlib.Path):
     data_en = get_student_json(student_json_en, 'en', isTest=isTest)
     data_kr = get_student_json(student_json_kr, 'kr', isTest=isTest)
     data_tw = get_student_json(student_json_tw, 'tw', isTest=isTest)
+    data_th = get_student_json(student_json_th, 'th', isTest=isTest)
 
     data_outdated = read_target_data(target_file_path)
 
@@ -129,6 +130,7 @@ def get_student(target_file_path: pathlib.Path):
                 en=next((x['familyName'] for x in data_en if x['id'] == student_id), student_family_name_jp),
                 kr=next((x['familyName'] for x in data_kr if x['id'] == student_id), student_family_name_jp),
                 tw=next((x['familyName'] for x in data_tw if x['id'] == student_id), student_family_name_jp),
+                th=next((x['familyName'] for x in data_th if x['id'] == student_id), student_family_name_jp),
             ),
             name=StudentName(
                 cn=student_object_old['name']['cn'] if student_object_old else find_student_name(student_id, 'name',
@@ -137,6 +139,7 @@ def get_student(target_file_path: pathlib.Path):
                 en=next((x['name'] for x in data_en if x['id'] == student_id), student_name_jp),
                 kr=next((x['name'] for x in data_kr if x['id'] == student_id), student_name_jp),
                 tw=next((x['name'] for x in data_tw if x['id'] == student_id), student_name_jp),
+                th=next((x['name'] for x in data_th if x['id'] == student_id), student_name_jp),
             ),
             nickname=student_object_old['nickname'] if student_object_old else [],
             club=find_student_club_name(student_jp['club']),
@@ -155,6 +158,7 @@ def get_student(target_file_path: pathlib.Path):
                 "en": student_latest.familyName.en,
                 "kr": student_latest.familyName.kr,
                 "tw": student_latest.familyName.tw,
+                "th": student_latest.familyName.th,
             },
             "name": {
                 "cn": student_latest.name.cn,
@@ -162,6 +166,7 @@ def get_student(target_file_path: pathlib.Path):
                 "en": student_latest.name.en,
                 "kr": student_latest.name.kr,
                 "tw": student_latest.name.tw,
+                "th": student_latest.name.th,
             },
             "nickname": student_latest.nickname,
             "club": student_latest.club,

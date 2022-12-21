@@ -8,6 +8,7 @@ class StudentName(BaseModel):
     en: Optional[str] = ''
     kr: Optional[str] = ''
     tw: Optional[str] = ''
+    th: Optional[str] = ''
 
 
 class Student(BaseModel):
