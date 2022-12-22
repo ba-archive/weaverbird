@@ -1,5 +1,6 @@
-import yaml
 import pathlib
+
+import yaml
 
 current = pathlib.Path(__file__).parent.absolute()
 

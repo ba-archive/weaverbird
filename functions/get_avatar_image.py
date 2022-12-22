@@ -1,12 +1,14 @@
-from models.Student import Avatar
-from typing import List
-import urllib3
 import pathlib
 import shutil
+from typing import List
+
 import click
+import urllib3
 from colorama import Fore
 from webptools import cwebp
 from webptools import grant_permission
+
+from models.Student import Avatar
 
 
 def get_avatar_image(students: List[Avatar], image_output_path: pathlib.Path):

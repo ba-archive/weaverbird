@@ -6,4 +6,9 @@
 
 ## 使用
 
-还没写完
+```shell
+python3 weaverbird.py update -t test/students.yaml
+```
+
+### 参数
+`--target, -t`: 配置文件路径

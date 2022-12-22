@@ -1,6 +1,7 @@
+import pathlib
+
 import click
 from colorama import Fore
-import pathlib
 
 from functions.student import get_student
 
