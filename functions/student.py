@@ -16,7 +16,7 @@ http = urllib3.PoolManager()
 isTest = False
 
 
-def get_student(target_file_path: pathlib.Path):
+def get_student(target_file_path: pathlib.Path, name_only: bool):
     """Get student data from SchaleDB."""
 
     def transform_student_type(raw_type: str) -> str:
@@ -123,9 +123,7 @@ def get_student(target_file_path: pathlib.Path):
         student_latest = Student(
             id=student_jp['id'],
             familyName=StudentName(
-                cn=student_object_old['familyName']['cn'] if student_object_old else find_student_name(student_id,
-                                                                                                       'familyName',
-                                                                                                       student_family_name_jp),
+                cn=find_student_name(student_id, 'familyName', student_family_name_jp),
                 jp=student_family_name_jp,
                 en=next((x['familyName'] for x in data_en if x['id'] == student_id), student_family_name_jp),
                 kr=next((x['familyName'] for x in data_kr if x['id'] == student_id), student_family_name_jp),
@@ -133,8 +131,7 @@ def get_student(target_file_path: pathlib.Path):
                 th=next((x['familyName'] for x in data_th if x['id'] == student_id), student_family_name_jp),
             ),
             name=StudentName(
-                cn=student_object_old['name']['cn'] if student_object_old else find_student_name(student_id, 'name',
-                                                                                                 student_name_jp),
+                cn=find_student_name(student_id, 'name', student_name_jp),
                 jp=student_name_jp,
                 en=next((x['name'] for x in data_en if x['id'] == student_id), student_name_jp),
                 kr=next((x['name'] for x in data_kr if x['id'] == student_id), student_name_jp),
@@ -183,4 +180,5 @@ def get_student(target_file_path: pathlib.Path):
 
     image_output_path = target_file_path.parent / 'image' / 'avatar_students'
 
-    get_avatar_image(avatar_latest, image_output_path)
+    if not name_only:
+        get_avatar_image(avatar_latest, image_output_path)

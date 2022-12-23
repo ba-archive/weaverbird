@@ -14,12 +14,13 @@ def _root():
 
 @_root.command("update")
 @click.option("--target", "-t", required=True)
-def _update(target: str):
+@click.option("--name-only", "-n", is_flag=True, default=False)
+def _update(target: str, name_only: bool):
     """Update data"""
     click.echo("Updating data")
     target_file_path = pathlib.Path(target)
     click.echo(f"{Fore.BLUE}Update data to [{target_file_path}]{Fore.RESET}")
-    get_student(target_file_path)
+    get_student(target_file_path, name_only)
 
 
 if __name__ == '__main__':
