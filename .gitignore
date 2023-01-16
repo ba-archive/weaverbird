@@ -130,4 +130,5 @@ dmypy.json
 
 .idea/
 test/
+output/
 .DS_Store
