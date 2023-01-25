@@ -38,8 +38,8 @@ class Student(BaseModel):
 
     @validator("weapon")
     def validate_weapon(cls, validateValue):
-        if validateValue not in ['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT']:
-            raise ValueError(f"{validateValue} not in {['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT']}")
+        if validateValue not in ['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT', 'FT']:
+            raise ValueError(f"{validateValue} not in {['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT', 'FT']}")
         return validateValue
 
 
@@ -70,8 +70,8 @@ class RawStudent(BaseModel):
 
     @validator("weapon")
     def validate_weapon(cls, validateValue):
-        if validateValue not in ['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT']:
-            raise ValueError(f"{validateValue} not in {['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT']}")
+        if validateValue not in ['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT', 'FT']:
+            raise ValueError(f"{validateValue} not in {['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT', 'FT']}")
         return validateValue
 
 
