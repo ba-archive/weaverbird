@@ -22,6 +22,7 @@ class Student(BaseModel):
     rarity: int = 1
     type: str = 'Striker'
     armorType: str = 'LightArmor'
+    bulletType: str = 'Pierce'
     weapon: str = 'AR'
 
     @validator("type")
@@ -34,6 +35,12 @@ class Student(BaseModel):
     def validate_armor_type(cls, validateValue):
         if validateValue not in ['LightArmor', 'HeavyArmor', 'Unarmed']:
             raise ValueError(f"{validateValue} not in {['LightArmor', 'HeavyArmor', 'Unarmed']}")
+        return validateValue
+
+    @validator("bulletType")
+    def validate_bullet_type(cls, validateValue):
+        if validateValue not in ['Pierce', 'Explosion', 'Mystic']:
+            raise ValueError(f"{validateValue} not in {['Pierce', 'Explosion', 'Mystic']}")
         return validateValue
 
     @validator("weapon")
@@ -53,6 +60,7 @@ class RawStudent(BaseModel):
     rarity: int = 1
     type: str = 'Striker'
     armorType: str = 'LightArmor'
+    bulletType: str = 'Pierce'
     weapon: str = 'AR'
     CollectionTexture: str = ''
 
@@ -66,6 +74,12 @@ class RawStudent(BaseModel):
     def validate_armor_type(cls, validateValue):
         if validateValue not in ['LightArmor', 'HeavyArmor', 'Unarmed']:
             raise ValueError(f"{validateValue} not in {['LightArmor', 'HeavyArmor', 'Unarmed']}")
+        return validateValue
+
+    @validator("bulletType")
+    def validate_bullet_type(cls, validateValue):
+        if validateValue not in ['Pierce', 'Explosion', 'Mystic']:
+            raise ValueError(f"{validateValue} not in {['Pierce', 'Explosion', 'Mystic']}")
         return validateValue
 
     @validator("weapon")

@@ -45,6 +45,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
                 rarity=student_raw['StarGrade'],
                 type=transform_student_type(student_raw['SquadType']),
                 armorType=student_raw['ArmorType'],
+                bulletType=student_raw['BulletType'],
                 weapon=student_raw['WeaponType'],
                 CollectionTexture=student_raw['CollectionTexture'],
             )
@@ -58,6 +59,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
                 "rarity": student.rarity,
                 "type": student.type,
                 "armorType": student.armorType,
+                "bulletType": student.bulletType,
                 "weapon": student.weapon,
                 "CollectionTexture": student.CollectionTexture,
             })
@@ -94,7 +96,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
 
     data_jp = get_student_json(student_json_jp, 'jp', isTest=isTest)
     data_jp_sorted = sorted(data_jp, key=lambda x: x['id'])
-    data_cn = get_student_json(student_json_cn, 'cn', isTest=isTest)
+    # (未使用) data_cn = get_student_json(student_json_cn, 'cn', isTest=isTest)
     data_en = get_student_json(student_json_en, 'en', isTest=isTest)
     data_kr = get_student_json(student_json_kr, 'kr', isTest=isTest)
     data_tw = get_student_json(student_json_tw, 'tw', isTest=isTest)
@@ -144,6 +146,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
             rarity=student_jp['rarity'],
             type=student_jp['type'],
             armorType=student_jp['armorType'],
+            bulletType=student_jp['bulletType'],
             weapon=student_jp['weapon'],
         )
 
@@ -171,6 +174,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
             "rarity": student_latest.rarity,
             "type": student_latest.type,
             "armorType": student_latest.armorType,
+            "bulletType": student_latest.bulletType,
             "weapon": student_latest.weapon,
         }
         data_latest.append(student_data_latest)
