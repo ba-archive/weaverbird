@@ -3,7 +3,6 @@ import pathlib
 import click
 from colorama import Fore
 
-from functions.student import get_student
 from functions.gen_student_names import gen_students_yml
 
 
@@ -18,6 +17,8 @@ def _root():
 @click.option("--name-only", "-n", is_flag=True, default=False)
 def _update(target: str, name_only: bool):
     """Update data"""
+    from functions.student import get_student
+
     click.echo("Updating data")
     target_file_path = pathlib.Path(target)
     click.echo(f"{Fore.BLUE}Update data to [{target_file_path}]{Fore.RESET}")

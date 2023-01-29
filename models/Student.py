@@ -2,6 +2,8 @@ from typing import Optional, List
 
 from pydantic import BaseModel, validator
 
+diff_name_regex = r"(.*)[（\(](.*)[\)）]"
+
 
 class StudentName(BaseModel):
     cn: Optional[str] = ''

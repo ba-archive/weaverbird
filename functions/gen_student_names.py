@@ -8,11 +8,9 @@ import yaml
 from colorama import Fore
 
 from api.url import student_json_cn, student_json_jp
-from models.Student import RawStudent
+from models.Student import RawStudent, diff_name_regex
 
 http = urllib3.PoolManager()
-
-regex_str = r"(.*)[（\(](.*)[\)）]"
 
 
 def gen_students_yml(target_file_path: pathlib.Path):
@@ -52,7 +50,7 @@ def gen_students_yml(target_file_path: pathlib.Path):
         return data
 
     def handle_diff_student(name: str):
-        reg_match = re.findall(regex_str, name)
+        reg_match = re.findall(diff_name_regex, name)
         if len(reg_match) == 0:
             return None
         return reg_match[0]
@@ -74,7 +72,7 @@ def gen_students_yml(target_file_path: pathlib.Path):
         student_name_jp = student_jp['name']
 
         if len(student_family_name_jp) == 0 or len(student_name_jp) == 0:
-            click.echo(f'{Fore.RED}ID:{student_id}, JP name is empty !{Fore.RESET}')
+            click.echo(f'{Fore.YELLOW}ID:{student_id}, JP name is empty !{Fore.RESET}')
             print(student_family_name_jp, student_name_jp)
             continue
 
@@ -84,7 +82,7 @@ def gen_students_yml(target_file_path: pathlib.Path):
                 student_name_cn = student_cn['name']
 
                 if len(student_family_name_cn) == 0 or len(student_name_cn) == 0:
-                    click.echo(f'{Fore.RED}ID:{student_id}, CN name is empty !{Fore.RESET}')
+                    click.echo(f'{Fore.YELLOW}ID:{student_id}, CN name is empty !{Fore.RESET}')
                     break
 
                 match_jp = handle_diff_student(student_name_jp)

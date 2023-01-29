@@ -1,15 +1,18 @@
 import json
 import pathlib
+import re
 
+import click
 import urllib3
 import yaml
+from colorama import Fore
 
 from api.settings.club_names import club_names
 from api.settings.school_names import school_names
 from api.settings.student_names import student_names
-from api.url import student_json_cn, student_json_en, student_json_jp, student_json_kr, student_json_tw, student_json_th
+from api.url import student_json_en, student_json_jp, student_json_kr, student_json_tw, student_json_th
 from functions.get_avatar_image import get_avatar_image
-from models.Student import RawStudent, Student, StudentName, Avatar
+from models.Student import RawStudent, Student, StudentName, Avatar, diff_name_regex
 
 http = urllib3.PoolManager()
 
@@ -75,11 +78,12 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
         except Exception as e:
             raise e
 
-    def find_student_name(id: int, findType: str = 'name', fallback: str = '') -> str:
-        candidate = next((x for x in student_names if x['id'] == id), None)
+    def find_student_name(name_jp: str = '') -> str:
+        candidate = next((x for x in student_names if x['stringJP'] == name_jp), None)
         if candidate is not None:
-            return candidate['name'] if findType == 'name' else candidate['familyName']
-        return fallback
+            return candidate['stringCN']
+        click.echo(f'{Fore.YELLOW}{name_jp}, CN name not found !{Fore.RESET}')
+        return name_jp
 
     def find_student_school_name(code: str) -> str:
         candidate = next((x for x in school_names if x['code'] == code), None)
@@ -93,6 +97,12 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
         if candidate is not None:
             return candidate['cn']
         return code
+
+    def handle_diff_student(name: str):
+        reg_match = re.findall(diff_name_regex, name)
+        if len(reg_match) == 0:
+            return None
+        return reg_match[0]
 
     data_jp = get_student_json(student_json_jp, 'jp', isTest=isTest)
     data_jp_sorted = sorted(data_jp, key=lambda x: x['id'])
@@ -116,6 +126,14 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
         student_avatar = student_jp['CollectionTexture']
         student_object_old = next((x for x in data_outdated if x['id'] == student_id), {})
 
+        student_name_match = handle_diff_student(student_name_jp)
+        if student_name_match is None:
+            student_name_cn = find_student_name(student_name_jp)
+        else:
+            name = find_student_name(student_name_match[0])
+            name_diff = find_student_name(student_name_match[1])
+            student_name_cn = f"{name}({name_diff})"
+
         avatar_jp = Avatar(
             id=student_id,
             avatarName=student_avatar,
@@ -125,7 +143,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
         student_latest = Student(
             id=student_jp['id'],
             familyName=StudentName(
-                cn=find_student_name(student_id, 'familyName', student_family_name_jp),
+                cn=find_student_name(student_family_name_jp),
                 jp=student_family_name_jp,
                 en=next((x['familyName'] for x in data_en if x['id'] == student_id), student_family_name_jp),
                 kr=next((x['familyName'] for x in data_kr if x['id'] == student_id), student_family_name_jp),
@@ -133,7 +151,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
                 th=next((x['familyName'] for x in data_th if x['id'] == student_id), student_family_name_jp),
             ),
             name=StudentName(
-                cn=find_student_name(student_id, 'name', student_name_jp),
+                cn=student_name_cn,
                 jp=student_name_jp,
                 en=next((x['name'] for x in data_en if x['id'] == student_id), student_name_jp),
                 kr=next((x['name'] for x in data_kr if x['id'] == student_id), student_name_jp),
@@ -186,3 +204,5 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
 
     if not name_only:
         get_avatar_image(avatar_latest, image_output_path)
+
+    click.echo("Done.")
