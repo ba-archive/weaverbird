@@ -53,9 +53,9 @@
 - stringJP: ツルギ
   stringCN: 鹤城
 - stringJP: 剣先
-  stringCN: 剑崎
+  stringCN: 剑先
 - stringJP: アカネ
-  stringCN: 茜
+  stringCN: 朱音
 - stringJP: 室笠
   stringCN: 室笠
 - stringJP: チセ
@@ -63,7 +63,7 @@
 - stringJP: 和楽
   stringCN: 和乐
 - stringJP: アカリ
-  stringCN: 亚伽里
+  stringCN: 明里
 - stringJP: 鰐渕
   stringCN: 鳄渊
 - stringJP: ハスミ
@@ -83,7 +83,7 @@
 - stringJP: 浅黄
   stringCN: 浅黄
 - stringJP: ジュンコ
-  stringCN: 淳子
+  stringCN: 纯子
 - stringJP: 赤司
   stringCN: 赤司
 - stringJP: セリカ
@@ -107,7 +107,7 @@
 - stringJP: 一之瀬
   stringCN: 一之濑
 - stringJP: コトリ
-  stringCN: 柯托莉
+  stringCN: 小鸟
 - stringJP: 豊見
   stringCN: 丰见
 - stringJP: スズミ
@@ -121,15 +121,15 @@
 - stringJP: ヒビキ
   stringCN: 响
 - stringJP: 猫塚
-  stringCN: 猫冢
+  stringCN: 猫塚
 - stringJP: カリン
   stringCN: 花凛
 - stringJP: 角楯
   stringCN: 角楯
 - stringJP: サヤ
-  stringCN: 纱绫
+  stringCN: 沙耶
 - stringJP: 薬子
-  stringCN: 叶子
+  stringCN: 药子
 - stringJP: アイリ
   stringCN: 爱莉
 - stringJP: 栗村
@@ -139,7 +139,7 @@
 - stringJP: 愛清
   stringCN: 爱清
 - stringJP: ハナエ
-  stringCN: 花江
+  stringCN: 花绘
 - stringJP: 朝顔
   stringCN: 朝颜
 - stringJP: ハレ
@@ -147,7 +147,7 @@
 - stringJP: 小鈎
   stringCN: 小钩
 - stringJP: ウタハ
-  stringCN: 歌原
+  stringCN: 咏叶
 - stringJP: 白石
   stringCN: 白石
 - stringJP: アヤネ
@@ -175,7 +175,7 @@
 - stringJP: 円堂
   stringCN: 圆堂
 - stringJP: ヨシミ
-  stringCN: 好美
+  stringCN: 喜美
 - stringJP: 伊原木
   stringCN: 伊原木
 - stringJP: マシロ
@@ -257,7 +257,7 @@
 - stringJP: 温泉
   stringCN: 温泉
 - stringJP: トモエ
-  stringCN: 智惠
+  stringCN: 巴
 - stringJP: 佐城
   stringCN: 佐城
 - stringJP: 正月
@@ -351,7 +351,7 @@
 - stringJP: 応援団
   stringCN: 应援团
 - stringJP: ノア
-  stringCN: 诺亚
+  stringCN: 诺雅
 - stringJP: 生塩
   stringCN: 生盐
 - stringJP: 体操服
@@ -379,6 +379,10 @@
 - stringJP: 下倉
   stringCN: 下仓
 - stringJP: カンナ
-  stringCN: 叶渚
+  stringCN: 康娜
 - stringJP: 尾刃
   stringCN: 尾刃
+- stringJP: サクラコ
+  stringCN: 樱子
+- stringJP: 歌住
+  stringCN: 歌住
