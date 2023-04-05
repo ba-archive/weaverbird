@@ -35,8 +35,8 @@ class Student(BaseModel):
 
     @validator("armorType")
     def validate_armor_type(cls, validateValue):
-        if validateValue not in ['LightArmor', 'HeavyArmor', 'Unarmed']:
-            raise ValueError(f"{validateValue} not in {['LightArmor', 'HeavyArmor', 'Unarmed']}")
+        if validateValue not in ['LightArmor', 'HeavyArmor', 'Unarmed', 'ElasticArmor']:
+            raise ValueError(f"{validateValue} not in {['LightArmor', 'HeavyArmor', 'Unarmed', 'ElasticArmor']}")
         return validateValue
 
     @validator("bulletType")
@@ -74,8 +74,8 @@ class RawStudent(BaseModel):
 
     @validator("armorType")
     def validate_armor_type(cls, validateValue):
-        if validateValue not in ['LightArmor', 'HeavyArmor', 'Unarmed']:
-            raise ValueError(f"{validateValue} not in {['LightArmor', 'HeavyArmor', 'Unarmed']}")
+        if validateValue not in ['LightArmor', 'HeavyArmor', 'Unarmed', 'ElasticArmor']:
+            raise ValueError(f"{validateValue} not in {['LightArmor', 'HeavyArmor', 'Unarmed', 'ElasticArmor']}")
         return validateValue
 
     @validator("bulletType")
