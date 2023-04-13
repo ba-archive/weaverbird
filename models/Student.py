@@ -21,6 +21,7 @@ class Student(BaseModel):
     nickname: List[str] = []
     club: str = '无社团'
     affiliation: str = '无所属'
+    birthday: [int, int] = [1, 1]
     rarity: int = 1
     type: str = 'Striker'
     armorType: str = 'LightArmor'
@@ -57,6 +58,7 @@ class RawStudent(BaseModel):
     familyName: str = ''
     name: str = ''
     nickname: List[str] = []
+    birthday: str = '1月1日'
     club: str = '无社团'
     affiliation: str = '无所属'
     rarity: int = 1

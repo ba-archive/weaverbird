@@ -43,6 +43,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
                 familyName=student_raw['FamilyName'],
                 name=student_raw['Name'],
                 nickname=[],
+                birthday=student_raw['Birthday'],
                 club=student_raw['Club'],
                 affiliation=student_raw['School'],
                 rarity=student_raw['StarGrade'],
@@ -57,6 +58,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
                 "familyName": student.familyName,
                 "name": student.name,
                 "nickname": student.nickname,
+                "birthday": student.birthday,
                 "club": student.club,
                 "affiliation": student.affiliation,
                 "rarity": student.rarity,
@@ -97,6 +99,10 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
         if candidate is not None:
             return candidate['cn']
         return code
+
+    def get_student_birthday(birthday: str) -> [int, int]:
+        birthday = birthday.split('月')
+        return int(birthday[1]), int(birthday[2].replace('日', ''))
 
     def handle_diff_student(name: str):
         reg_match = re.findall(diff_name_regex, name)
@@ -159,6 +165,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
                 th=next((x['name'] for x in data_th if x['id'] == student_id), student_name_jp),
             ),
             nickname=student_object_old['nickname'] if student_object_old else [],
+            birthday=get_student_birthday(student_jp['birthday']),
             club=find_student_club_name(student_jp['club']),
             affiliation=find_student_school_name(student_jp['affiliation']),
             rarity=student_jp['rarity'],
