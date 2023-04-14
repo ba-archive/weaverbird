@@ -1,6 +1,7 @@
 import json
 import pathlib
 import re
+from typing import Tuple
 
 import click
 import urllib3
@@ -12,7 +13,7 @@ from api.settings.school_names import school_names
 from api.settings.student_names import student_names
 from api.url import student_json_en, student_json_jp, student_json_kr, student_json_tw, student_json_th
 from functions.get_avatar_image import get_avatar_image
-from models.Student import RawStudent, Student, StudentName, Avatar, diff_name_regex
+from models.Student import RawStudent, Student, StudentName, Avatar, diff_name_regex, birthday_regex
 
 http = urllib3.PoolManager()
 
@@ -100,9 +101,11 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
             return candidate['cn']
         return code
 
-    def get_student_birthday(birthday: str) -> [int, int]:
-        birthday = birthday.split('月')
-        return int(birthday[1]), int(birthday[2].replace('日', ''))
+    def get_student_birthday(birthday: str) -> Tuple[int, int]:
+        reg_match = re.findall(birthday_regex, birthday)
+        if len(reg_match) == 0:
+            raise ValueError(f"Invalid birthday format: {birthday}")
+        return int(reg_match[0][0]), int(reg_match[0][1])
 
     def handle_diff_student(name: str):
         reg_match = re.findall(diff_name_regex, name)
@@ -194,6 +197,10 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
                 "th": student_latest.name.th,
             },
             "nickname": student_latest.nickname,
+            "birthday": {
+                "month": student_latest.birthday[0],
+                "day": student_latest.birthday[1],
+            },
             "club": student_latest.club,
             "affiliation": student_latest.affiliation,
             "rarity": student_latest.rarity,

@@ -1,9 +1,9 @@
-from typing import Optional, List
+from typing import Optional, List, Tuple
 
 from pydantic import BaseModel, validator
 
 diff_name_regex = r"(.*)[（\(](.*)[\)）]"
-
+birthday_regex = r"(.*)月(.*)日"
 
 class StudentName(BaseModel):
     cn: Optional[str] = ''
@@ -21,7 +21,7 @@ class Student(BaseModel):
     nickname: List[str] = []
     club: str = '无社团'
     affiliation: str = '无所属'
-    birthday: [int, int] = [1, 1]
+    birthday: Tuple[int, int] = (1, 1)
     rarity: int = 1
     type: str = 'Striker'
     armorType: str = 'LightArmor'
