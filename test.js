@@ -20,4 +20,4 @@ const entityNewAll = entityNew.map((item) => {
   return entity;
 });
 
-fs.writeFileSync("./settings/entity_names.yml", jsyaml.dump(entityNewAll));
+fs.writeFileSync("./settings/entity_names_new.yml", jsyaml.dump(entityNewAll.sort((a, b) => a.Code.toString().localeCompare(b.Code))));
