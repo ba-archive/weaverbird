@@ -1,0 +1,15 @@
+{
+  "name": "weaverbird",
+  "version": "1.0.0",
+  "description": "数据更新管线。",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

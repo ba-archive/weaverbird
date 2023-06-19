@@ -20,7 +20,9 @@ class Student(BaseModel):
     name: StudentName
     nickname: List[str] = []
     club: str = '无社团'
+    clubCode: str = ''
     affiliation: str = '无所属'
+    schoolCode: str = ''
     birthday: Tuple[int, int] = (1, 1)
     rarity: int = 1
     type: str = 'Striker'

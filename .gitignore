@@ -132,3 +132,5 @@ dmypy.json
 test/
 output/
 .DS_Store
+
+node_modules/
