@@ -45,7 +45,7 @@ class Student(BaseModel):
     @validator("bulletType")
     def validate_bullet_type(cls, validateValue):
         if validateValue not in ['Pierce', 'Explosion', 'Mystic']:
-            raise ValueError(f"{validateValue} not in {['Pierce', 'Explosion', 'Mystic']}")
+            raise ValueError(f"{validateValue} not in {['Pierce', 'Explosion', 'Mystic', 'Sonic']}")
         return validateValue
 
     @validator("weapon")
