@@ -20,7 +20,7 @@ def get_avatar_image(students: List[Avatar], image_output_path: pathlib.Path):
 
     for student in students:
         id = student.id
-        avatar_name = student.avatarName
+        avatar_name = str(student.avatarName)
 
         url = f'https://lonqie.github.io/SchaleDB/images/student/collection/{avatar_name}.webp'
 

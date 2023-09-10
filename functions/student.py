@@ -52,7 +52,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
                 armorType=student_raw['ArmorType'],
                 bulletType=student_raw['BulletType'],
                 weapon=student_raw['WeaponType'],
-                CollectionTexture=student_raw['CollectionTexture'],
+                CollectionTexture=student_raw['Id'],
             )
             data.append({
                 "id": student.id,

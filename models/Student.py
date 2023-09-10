@@ -5,6 +5,11 @@ from pydantic import BaseModel, validator
 diff_name_regex = r"(.*)[（\(](.*)[\)）]"
 birthday_regex = r"(.*)月(.*)日"
 
+tactic_type = ['Striker', 'Special']
+armor_type = ['LightArmor', 'HeavyArmor', 'Unarmed', 'ElasticArmor']
+bullet_type = ['Pierce', 'Explosion', 'Mystic', 'Sonic']
+weapon_type = ['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT', 'FT']
+
 class StudentName(BaseModel):
     cn: Optional[str] = ''
     jp: str
@@ -32,26 +37,26 @@ class Student(BaseModel):
 
     @validator("type")
     def validate_type(cls, validateValue):
-        if validateValue not in ['Striker', 'Special']:
-            raise ValueError(f"{validateValue} not in {['Striker', 'Special']}")
+        if validateValue not in tactic_type:
+            raise ValueError(f"Tactic type {validateValue} not in {tactic_type}")
         return validateValue
 
     @validator("armorType")
     def validate_armor_type(cls, validateValue):
-        if validateValue not in ['LightArmor', 'HeavyArmor', 'Unarmed', 'ElasticArmor']:
-            raise ValueError(f"{validateValue} not in {['LightArmor', 'HeavyArmor', 'Unarmed', 'ElasticArmor']}")
+        if validateValue not in armor_type:
+            raise ValueError(f"Armor type {validateValue} not in {armor_type}")
         return validateValue
 
     @validator("bulletType")
     def validate_bullet_type(cls, validateValue):
-        if validateValue not in ['Pierce', 'Explosion', 'Mystic']:
-            raise ValueError(f"{validateValue} not in {['Pierce', 'Explosion', 'Mystic', 'Sonic']}")
+        if validateValue not in bullet_type:
+            raise ValueError(f"Bullet type {validateValue} not in {bullet_type}")
         return validateValue
 
     @validator("weapon")
     def validate_weapon(cls, validateValue):
-        if validateValue not in ['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT', 'FT']:
-            raise ValueError(f"{validateValue} not in {['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT', 'FT']}")
+        if validateValue not in weapon_type:
+            raise ValueError(f"Weapon type {validateValue} not in {weapon_type}")
         return validateValue
 
 
@@ -68,33 +73,33 @@ class RawStudent(BaseModel):
     armorType: str = 'LightArmor'
     bulletType: str = 'Pierce'
     weapon: str = 'AR'
-    CollectionTexture: str = ''
+    CollectionTexture: int = 10000
 
     @validator("type")
     def validate_type(cls, validateValue):
-        if validateValue not in ['Striker', 'Special']:
-            raise ValueError(f"{validateValue} not in {['Striker', 'Special']}")
+        if validateValue not in tactic_type:
+            raise ValueError(f"Tactic type {validateValue} not in {tactic_type}")
         return validateValue
 
     @validator("armorType")
     def validate_armor_type(cls, validateValue):
-        if validateValue not in ['LightArmor', 'HeavyArmor', 'Unarmed', 'ElasticArmor']:
-            raise ValueError(f"{validateValue} not in {['LightArmor', 'HeavyArmor', 'Unarmed', 'ElasticArmor']}")
+        if validateValue not in armor_type:
+            raise ValueError(f"Armor type {validateValue} not in {armor_type}")
         return validateValue
 
     @validator("bulletType")
     def validate_bullet_type(cls, validateValue):
-        if validateValue not in ['Pierce', 'Explosion', 'Mystic']:
-            raise ValueError(f"{validateValue} not in {['Pierce', 'Explosion', 'Mystic']}")
+        if validateValue not in bullet_type:
+            raise ValueError(f"Bullet type {validateValue} not in {bullet_type}")
         return validateValue
 
     @validator("weapon")
     def validate_weapon(cls, validateValue):
-        if validateValue not in ['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT', 'FT']:
-            raise ValueError(f"{validateValue} not in {['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT', 'FT']}")
+        if validateValue not in weapon_type:
+            raise ValueError(f"Weapon type {validateValue} not in {weapon_type}")
         return validateValue
 
 
 class Avatar(BaseModel):
     id: int = 0
-    avatarName: str = ''
+    avatarName: int = 10000
