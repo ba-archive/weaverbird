@@ -20,7 +20,7 @@ http = urllib3.PoolManager()
 isTest = False
 
 
-def get_student(target_file_path: pathlib.Path, name_only: bool):
+def get_student(target_file_path: pathlib.Path, image_path: str, name_only: bool):
     """Get student data from SchaleDB."""
 
     def transform_student_type(raw_type: str) -> str:
@@ -218,7 +218,7 @@ def get_student(target_file_path: pathlib.Path, name_only: bool):
     with open(target_file_path, "w", encoding="utf-8") as f:
         yaml.dump(data_latest, f, allow_unicode=True, sort_keys=False, Dumper=yaml.CDumper)
 
-    image_output_path = target_file_path.parent / 'image' / 'avatar_students'
+    image_output_path = target_file_path.parent / 'image' / 'avatar_students' if image_path is None else pathlib.Path(image_path)
 
     if not name_only:
         get_avatar_image(avatar_latest, image_output_path)
