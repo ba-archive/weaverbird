@@ -9,6 +9,7 @@ from webptools import cwebp
 from webptools import grant_permission
 
 from models.Student import Avatar
+from api.url import base_url
 
 
 def get_avatar_image(students: List[Avatar], image_output_path: pathlib.Path):
@@ -22,12 +23,12 @@ def get_avatar_image(students: List[Avatar], image_output_path: pathlib.Path):
         id = student.id
         avatar_name = str(student.avatarName)
 
-        url = f'https://lonqie.github.io/SchaleDB/images/student/collection/{avatar_name}.webp'
+        url = f'{base_url}/images/student/collection/{avatar_name}.webp'
 
         response = http.request('GET', url)
 
         with open(raw_output_path.joinpath(f'{id}.webp'), 'wb') as f:
-            click.echo(f'{Fore.BLUE}Writing {id}.webp{Fore.RESET}')
+            click.echo(f'{Fore.BLUE}Writing {url}{Fore.RESET}')
             f.write(response.data)
 
     raw_files = list(raw_output_path.glob('*.webp'))

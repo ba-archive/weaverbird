@@ -35,6 +35,7 @@ def get_student(target_file_path: pathlib.Path, image_path: str, name_only: bool
             with open(f"test/data_{language}.json", "r", encoding="utf-8") as f:
                 response_raw = json.load(f)
         else:
+            click.echo(f'{Fore.BLUE}Getting {language} data from {url}{Fore.RESET}')
             response = http.request('GET', url)
             response_raw = json.loads(response.data.decode('utf-8'))
         data = []
