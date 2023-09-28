@@ -1,6 +1,8 @@
-student_json_cn = 'https://lonqie.github.io/SchaleDB/data/cn/students.json'
-student_json_en = 'https://lonqie.github.io/SchaleDB/data/en/students.json'
-student_json_jp = 'https://lonqie.github.io/SchaleDB/data/jp/students.json'
-student_json_kr = 'https://lonqie.github.io/SchaleDB/data/kr/students.json'
-student_json_tw = 'https://lonqie.github.io/SchaleDB/data/tw/students.json'
-student_json_th = 'https://lonqie.github.io/SchaleDB/data/th/students.json'
+base_url = 'https://schale.gg'
+
+student_json_cn = f"{base_url}/data/cn/students.json"
+student_json_en = f"{base_url}/data/en/students.json"
+student_json_jp = f"{base_url}/data/jp/students.json"
+student_json_kr = f"{base_url}/data/kr/students.json"
+student_json_tw = f"{base_url}/data/tw/students.json"
+student_json_th = f"{base_url}/data/th/students.json"
