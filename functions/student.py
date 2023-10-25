@@ -90,19 +90,21 @@ def get_student(target_file_path: pathlib.Path, image_path: str, name_only: bool
         return name_jp
 
     def find_student_school_name(code: str) -> str:
-        candidate = next((x for x in school_names if x['code'] == code), None)
+        candidate = next((x for x in school_names if x['Code'] == code), None)
         if candidate is not None:
-            return candidate['cn']
+            return candidate['TextCn']
         print(f"School name not found: {code}")
         return code
 
     def find_student_club_name(code: str) -> str:
-        candidate = next((x for x in club_names if x['code'] == code), None)
+        candidate = next((x for x in club_names if x['Code'] == code), None)
         if candidate is not None:
-            return candidate['cn']
+            return candidate['TextCn']
         return code
 
     def get_student_birthday(birthday: str) -> Tuple[int, int]:
+        if birthday == '-':
+            return 0, 0
         reg_match = re.findall(birthday_regex, birthday)
         if len(reg_match) == 0:
             raise ValueError(f"Invalid birthday format: {birthday}")
