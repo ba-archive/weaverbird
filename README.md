@@ -14,3 +14,5 @@ python3 weaverbird.py update -t test/students.yaml
 `--target, -t`: 配置文件路径
 
 `--name-only`: 只更新学生名单，不抓取图片
+
+`--image-path`: 图片保存路径
