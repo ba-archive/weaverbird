@@ -5,18 +5,19 @@ from pydantic import BaseModel, validator
 diff_name_regex = r"(.*)[（\(](.*)[\)）]"
 birthday_regex = r"(.*)月(.*)日"
 
-tactic_type = ['Striker', 'Special']
-armor_type = ['LightArmor', 'HeavyArmor', 'Unarmed', 'ElasticArmor']
-bullet_type = ['Pierce', 'Explosion', 'Mystic', 'Sonic']
-weapon_type = ['SG', 'SMG', 'AR', 'GL', 'HG', 'RL', 'SR', 'RG', 'MG', 'MT', 'FT']
+tactic_type = ["Striker", "Special"]
+armor_type = ["LightArmor", "HeavyArmor", "Unarmed", "ElasticArmor"]
+bullet_type = ["Pierce", "Explosion", "Mystic", "Sonic"]
+weapon_type = ["SG", "SMG", "AR", "GL", "HG", "RL", "SR", "RG", "MG", "MT", "FT"]
+
 
 class StudentName(BaseModel):
-    cn: Optional[str] = ''
+    cn: Optional[str] = ""
     jp: str
-    en: Optional[str] = ''
-    kr: Optional[str] = ''
-    tw: Optional[str] = ''
-    th: Optional[str] = ''
+    en: Optional[str] = ""
+    kr: Optional[str] = ""
+    tw: Optional[str] = ""
+    th: Optional[str] = ""
 
 
 class Student(BaseModel):
@@ -24,16 +25,17 @@ class Student(BaseModel):
     familyName: StudentName
     name: StudentName
     nickname: List[str] = []
-    club: str = '无社团'
-    clubCode: str = ''
-    affiliation: str = '无所属'
-    schoolCode: str = ''
+    nicknameFrom: Optional[int] = 0
+    club: str = "无社团"
+    clubCode: str = ""
+    affiliation: str = "无所属"
+    schoolCode: str = ""
     birthday: Tuple[int, int] = (1, 1)
     rarity: int = 1
-    type: str = 'Striker'
-    armorType: str = 'LightArmor'
-    bulletType: str = 'Pierce'
-    weapon: str = 'AR'
+    type: str = "Striker"
+    armorType: str = "LightArmor"
+    bulletType: str = "Pierce"
+    weapon: str = "AR"
 
     @validator("type")
     def validate_type(cls, validateValue):
@@ -62,17 +64,17 @@ class Student(BaseModel):
 
 class RawStudent(BaseModel):
     id: int = 0
-    familyName: str = ''
-    name: str = ''
+    familyName: str = ""
+    name: str = ""
     nickname: List[str] = []
-    birthday: str = '1月1日'
-    club: str = '无社团'
-    affiliation: str = '无所属'
+    birthday: str = "1月1日"
+    club: str = "无社团"
+    affiliation: str = "无所属"
     rarity: int = 1
-    type: str = 'Striker'
-    armorType: str = 'LightArmor'
-    bulletType: str = 'Pierce'
-    weapon: str = 'AR'
+    type: str = "Striker"
+    armorType: str = "LightArmor"
+    bulletType: str = "Pierce"
+    weapon: str = "AR"
     CollectionTexture: int = 10000
 
     @validator("type")
