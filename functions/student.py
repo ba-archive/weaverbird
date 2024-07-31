@@ -68,6 +68,8 @@ def get_student(target_file_path: pathlib.Path, image_path: str, name_only: bool
                 weapon=student_raw["WeaponType"],
                 CollectionTexture=student_raw["Id"],
             )
+            if student.id == 10099:
+                continue
             data.append(
                 {
                     "id": student.id,
