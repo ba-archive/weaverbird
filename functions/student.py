@@ -54,19 +54,19 @@ def get_student(target_file_path: pathlib.Path, image_path: str, name_only: bool
         data = []
         for student_raw in response_raw:
             student = RawStudent(
-                id=student_raw["Id"],
-                familyName=student_raw["FamilyName"],
-                name=student_raw["Name"],
+                id=response_raw[student_raw]["Id"],
+                familyName=response_raw[student_raw]["FamilyName"],
+                name=response_raw[student_raw]["Name"],
                 nickname=[],
-                birthday=student_raw["Birthday"],
-                club=student_raw["Club"],
-                affiliation=student_raw["School"],
-                rarity=student_raw["StarGrade"],
-                type=transform_student_type(student_raw["SquadType"]),
-                armorType=student_raw["ArmorType"],
-                bulletType=student_raw["BulletType"],
-                weapon=student_raw["WeaponType"],
-                CollectionTexture=student_raw["Id"],
+                birthday=response_raw[student_raw]["Birthday"],
+                club=response_raw[student_raw]["Club"],
+                affiliation=response_raw[student_raw]["School"],
+                rarity=response_raw[student_raw]["StarGrade"],
+                type=transform_student_type(response_raw[student_raw]["SquadType"]),
+                armorType=response_raw[student_raw]["ArmorType"],
+                bulletType=response_raw[student_raw]["BulletType"],
+                weapon=response_raw[student_raw]["WeaponType"],
+                CollectionTexture=response_raw[student_raw]["Id"],
             )
             if student.id == 10099:
                 continue
